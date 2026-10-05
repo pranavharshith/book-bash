@@ -15,6 +15,8 @@ const MANIFEST_PATH := "res://data/preload_manifest.json"
 ## Frames to keep covering the arena after it is ready (first-draw shader compiles).
 const SETTLE_FRAMES := 4
 const FADE_TIME := 0.25
+const WARMUP_HEADINGS := 8
+const WARMUP_OVERHEAD := 2
 
 ## Keeps the preloaded resources referenced so the cache does not drop them
 ## before the arena instantiates them. Replaced on the next load.
@@ -122,10 +124,7 @@ func _process(_delta: float) -> void:
 		1:
 			_switch_scene()
 		2:
-			_settle += 1
-			if _settle >= SETTLE_FRAMES:
-				_phase = 3
-				_fade_out()
+			_warm_up_step()
 
 func _poll_loads() -> void:
 	var index := _pending.size() - 1
@@ -156,12 +155,46 @@ func _switch_scene() -> void:
 		push_error("LoadingScreen: scene change failed (%d)" % error)
 		queue_free()
 
+## Behind the overlay, swings the match camera through eight headings and then
+## the overhead spectator view, one pose per frame. Each pose draws materials
+## that have not been seen yet, so their shaders compile now rather than as a
+## hitch the first time the player turns around or gets knocked out.
+func _warm_up_step() -> void:
+	var scene := get_tree().current_scene
+	var rig := scene.get_node_or_null("CameraRig") as MatchCamera if scene else null
+	var decor := scene.get_node_or_null("ArenaDecor") as ThemedArenaDecor if scene else null
+	if rig == null:
+		# Not an arena (or not ready yet): just cover a few frames.
+		_settle += 1
+		if _settle >= SETTLE_FRAMES + 30 or (scene != null and _settle >= SETTLE_FRAMES):
+			_phase = 3
+			_fade_out()
+		return
+	_status.text = "Warming up…"
+	if _settle < WARMUP_HEADINGS:
+		rig.warmup_pose(_settle, false)
+	elif _settle < WARMUP_HEADINGS + WARMUP_OVERHEAD:
+		if decor and _settle == WARMUP_HEADINGS:
+			decor.set_overhead_view(true)
+		rig.warmup_pose(_settle - WARMUP_HEADINGS, true)
+	elif _settle == WARMUP_HEADINGS + WARMUP_OVERHEAD:
+		if decor:
+			decor.set_overhead_view(false)
+		rig.end_warmup()
+	elif _settle >= WARMUP_HEADINGS + WARMUP_OVERHEAD + SETTLE_FRAMES:
+		_phase = 3
+		_fade_out()
+	_settle += 1
+
 func _fade_out() -> void:
 	var tween := create_tween()
 	tween.tween_property(get_child(0), "modulate:a", 0.0, FADE_TIME)
 	tween.tween_callback(_finish)
 
 func _finish() -> void:
+	print_verbose("LoadingScreen: done at %d ms" % Time.get_ticks_msec())
+	if OS.get_cmdline_user_args().has("--bb-autoplay"):
+		print("[probe] loading finished at %d ms" % Time.get_ticks_msec())
 	if _active == self:
 		_active = null
 	queue_free()

@@ -165,6 +165,49 @@ func toggle_mode() -> void:
 func is_spectating() -> bool:
 	return _spectating
 
+# --- Shader warm-up (driven by LoadingScreen while it still covers the view) - #
+var _warmup_overhead := false
+var _warmup_saved_yaw := 0.0
+var _warmup_active := false
+
+## Points the camera somewhere new so every material in that direction gets its
+## shader compiled now, behind the loading overlay, instead of mid-match.
+func warmup_pose(step: int, overhead: bool) -> void:
+	if not _warmup_active:
+		_warmup_active = true
+		_warmup_saved_yaw = yaw
+	_warmup_overhead = overhead
+	if overhead:
+		_god_yaw = PI * float(step % 2)
+	else:
+		yaw = wrapf(TAU * float(step) / 8.0, -PI, PI)
+
+func end_warmup() -> void:
+	if not _warmup_active:
+		return
+	_warmup_active = false
+	_warmup_overhead = false
+	_god_blend = 0.0
+	_god_yaw = 0.0
+	yaw = _warmup_saved_yaw
+	snap()
+
+## While following another fighter as a spectator, their own floating name/health
+## plate would sit right in front of the lens, so it is hidden for that fighter.
+var _plate_hidden_for: Fighter
+
+func _update_followed_nameplate() -> void:
+	var wanted: Fighter = null
+	if _spectating and not _overhead and _subject and _subject != _local_player:
+		wanted = _subject
+	if wanted == _plate_hidden_for:
+		return
+	if _plate_hidden_for and is_instance_valid(_plate_hidden_for) and _plate_hidden_for.nameplate():
+		_plate_hidden_for.nameplate().visible = _plate_hidden_for.alive and not _plate_hidden_for.is_knocked_out
+	_plate_hidden_for = wanted
+	if wanted and wanted.nameplate():
+		wanted.nameplate().visible = false
+
 func is_overhead() -> bool:
 	return _spectating and _overhead
 
@@ -218,6 +261,9 @@ func _process(delta: float) -> void:
 		return
 	_update_spectating()
 	var god_target := 1.0 if (_spectating and _overhead) else 0.0
+	if _warmup_overhead:
+		god_target = 1.0
+		_god_blend = 1.0
 	_god_blend = lerpf(_god_blend, god_target, 1.0 - exp(-GOD_SHARPNESS * delta))
 	if absf(_god_blend - god_target) < 0.002:
 		_god_blend = god_target
@@ -225,6 +271,7 @@ func _process(delta: float) -> void:
 	if subject != _subject:
 		_set_self_hidden(false)
 		_subject = subject
+	_update_followed_nameplate()
 	if _subject == null:
 		return
 

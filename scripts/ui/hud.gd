@@ -766,8 +766,12 @@ func _layout_overlays(view: Vector2, s: float) -> void:
 	_spectate_label.add_theme_font_size_override("font_size", int(19 * s))
 	_help_label.add_theme_font_size_override("font_size", int(16 * s))
 	_help_label.position = Vector2(18, 12) * s
-	_help_panel.size = Vector2(330, 250) * s
-	_help_panel.position = Vector2(26 * s, view.y * 0.5 - _help_panel.size.y * 0.5 + 30 * s)
+	_help_panel.size = (Vector2(330, 190) if _touch_layout else Vector2(330, 250)) * s
+	if _touch_layout:
+		# Tucked under the portrait strip so it never covers the joystick.
+		_help_panel.position = Vector2(26 * s, (26.0 + 92.0 + 14.0) * s)
+	else:
+		_help_panel.position = Vector2(26 * s, view.y * 0.5 - _help_panel.size.y * 0.5 + 30 * s)
 	var pause_size := Vector2(440, 500) * s
 	_pause_panel.size = pause_size
 	_pause_panel.position = (view - pause_size) * 0.5
@@ -779,7 +783,7 @@ func _refresh_help_text() -> void:
 	if _help_label == null:
 		return
 	if _touch_layout:
-		_help_label.text = "HOW TO PLAY\n\nLeft stick: move\nDrag right side: look / turn\nTHROW: hold to aim, release to throw\n   (drag while holding to steer)\nJUMP / DODGE buttons\nCAM: first / third person\nII: menu\n\nGrab glowing books, knock rivals out!"
+		_help_label.text = "HOW TO PLAY\nLeft stick: move\nDrag right side: look around\nTHROW: hold to aim, let go to throw\nJUMP / DODGE: tap\nCAM: switch view    II: menu\nGrab glowing books, knock rivals out!"
 	else:
 		_help_label.text = "HOW TO PLAY\n\nW A S D: move\nMouse: look / turn\nLeft mouse (hold): aim + throw\nSpace: jump      Shift / RMB: dodge\nV: first / third person\nTab: scoreboard     H: this help\nEsc: menu\n\nGrab glowing books, knock rivals out!"
 

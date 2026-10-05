@@ -40,6 +40,11 @@ func _ready() -> void:
 			_scenario = argument.trim_prefix("--bb-play=")
 		elif argument == "--bb-calm":
 			_calm = true
+		elif argument == "--bb-autoplay":
+			# Exercises the real PLAY path: lobby -> loading screen -> arena.
+			get_tree().create_timer(1.0).timeout.connect(func():
+				print("[probe] autoplay at %d ms" % Time.get_ticks_msec())
+				LoadingScreen.go(get_tree(), GameState.get_selected_arena_scene()))
 	if _prefix.is_empty() and _scenario.is_empty():
 		set_process(false)
 		return
@@ -219,6 +224,18 @@ func _track_frame_time(delta: float) -> void:
 	_frame_sum += delta
 	_frame_worst = maxf(_frame_worst, delta)
 	_frame_count += 1
+	if delta > 0.05:
+		var books := get_tree().get_nodes_in_group("fighters").size()
+		print("[probe] SPIKE %.0fms at t=%.2f (projectiles=%d, fighters=%d)" % [delta * 1000.0, _elapsed, _count_projectiles(), books])
+
+func _count_projectiles() -> int:
+	var count := 0
+	var scene := get_tree().current_scene
+	if scene:
+		for child in scene.get_children():
+			if child is BookProjectile:
+				count += 1
+	return count
 
 var _bot_last: Dictionary = {}
 var _bot_moved: Dictionary = {}
