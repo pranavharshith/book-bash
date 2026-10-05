@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://playercharacter_bookbash"]
+
+[ext_resource type="Script" path="res://scripts/player/player_controller.gd" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/props/BookProjectile.tscn" id="2"]
+
+[sub_resource type="CapsuleShape3D" id="shape_1"]
+radius = 0.4
+height = 1.8
+
+[node name="Fighter" type="CharacterBody3D" groups=["fighters"]]
+collision_layer = 2
+collision_mask = 35
+floor_stop_on_slope = true
+floor_constant_speed = true
+floor_block_on_wall = true
+floor_max_angle = 0.8
+floor_snap_length = 0.45
+safe_margin = 0.02
+script = ExtResource("1")
+book_projectile_scene = ExtResource("2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("shape_1")
+
+[node name="ModelHolder" type="Node3D" parent="."]
+
+[node name="ThrowPoint" type="Marker3D" parent="ModelHolder"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.32, 1.45, -0.45)

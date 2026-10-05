@@ -1,32 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://boot_scene_bookbash"]
+[gd_scene load_steps=2 format=3 uid="uid://boot_scene_bookbash"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1"]
-sky_top_color = Color(0.24, 0.42, 0.65, 1)
-sky_horizon_color = Color(0.65, 0.72, 0.82, 1)
-ground_bottom_color = Color(0.15, 0.15, 0.17, 1)
-ground_horizon_color = Color(0.45, 0.45, 0.48, 1)
+[ext_resource type="Script" path="res://scripts/game/boot.gd" id="1"]
 
-[sub_resource type="Sky" id="Sky_1"]
-sky_material = SubResource("ProceduralSkyMaterial_1")
-
-[sub_resource type="Environment" id="Environment_1"]
-background_mode = 2
-sky = SubResource("Sky_1")
-
-[node name="Boot" type="Node3D"]
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_1")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.7, -0.3, 0.6, 0, 0.9, 0.4, -0.7, -0.3, 0.6, 0, 4, 0)
-shadow_enabled = true
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.9, 0.4, 0, -0.4, 0.9, 0, 4, 8)
-current = true
-
-[node name="Label3D" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-text = "Book Bash — Phase 0 Boot"
-font_size = 64
+[node name="Boot" type="Node"]
+script = ExtResource("1")

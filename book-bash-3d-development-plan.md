@@ -317,3 +317,397 @@ At each phase boundary, ask Kiro to **build and deploy to your device/emulator**
 - Accepting Android SDK license prompts and keeping an emulator/device available for Kiro to deploy test builds to.
 
 Everything else — every script, every shader, every procedural 3D prop, every UI screen, every system in §4 and beyond — is fully within what Kiro can generate and wire together in code, exactly as you asked.
+
+
+
+
+
+MAYBE HELPFUL USE THEM AND FREE ONES ONLY AND GOOD ONES WHICH MATCH THE IMAGES( D:\Book-bash\image.png       ,       ) ONLY
+
+
+Yes. I searched current 2026 asset libraries and, for **Book Bash specifically**, there is a much better route than making every asset yourself.
+
+The key is to build an **asset stack**: one character system, one animation system, one environment/prop family, then books + hats + VFX on top.
+
+## My recommended Book Bash asset stack
+
+| Need                                | Asset / Source                           | Why I would use it                                                                                                                                                                            |
+| ----------------------------------- | ---------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Main characters**                 | **Quaternius Universal Base Characters** | 6 game-ready humanoids, multiple proportions, 20 hairstyles, humanoid rig, FBX + glTF, CC0. Very good base for your players. ([quaternius.com][1])                                            |
+| **Lots of character variations**    | **Quaternius Ultimate Modular Men**      | 11 characters, 24 animations, modular body parts/clothing, FBX/OBJ/glTF/Blend, CC0. ([quaternius.com][2])                                                                                     |
+| **Female variations**               | **Quaternius Ultimate Modular Women**    | 10 characters + 24 animations, modular parts, CC0. ([quaternius.com][3])                                                                                                                      |
+| **Characters + clothing + hats**    | **Creative Characters FREE**             | 30 modular character assets including hats, hairstyles, outfits, shoes, glasses, accessories + 30 animations. FBX/glTF/OBJ. ([Fab.com][4])                                                    |
+| **Animations — my #1 choice**       | **Universal Animation Library 2**        | 130+ animations, humanoid retargeting, locomotion, combat, combos, parkour, root-motion and non-root-motion versions; Unity/Godot/Unreal; CC0. ([itch.io][5])                                 |
+| **Animations — older huge library** | **Universal Animation Library**          | 120+ animations including 8-direction locomotion, sprint, combat, emotes, death, etc. CC0. ([itch.io][6])                                                                                     |
+| **Animation alternative**           | **Mixamo**                               | Thousands of mocap animations, automatic humanoid rigging and downloadable game-ready animations. Adobe says it can be used for personal/commercial games subject to its terms. ([Mixamo][7]) |
+| **Books**                           | **Quaternius Fantasy Props MegaKit**     | Their current catalogue explicitly includes books, crates, potions, furniture, etc. and is CC0. ([quaternius.com][8])                                                                         |
+| **Book projectile**                 | **Book – Low Poly**                      | 528 triangles; excellent starting point for the actual throwable book. ([Sketchfab][9])                                                                                                       |
+| **Better book**                     | **FREE Simple Opening Book**             | ~1k triangles, low-poly, 4K textures, FBX; useful for hero book models. ([Sketchfab][10])                                                                                                     |
+| **Book collection**                 | **Books Essentials**                     | Collection of free low-poly books with Blend/DAE/OBJ/FBX/GLB/STL. ([Sketchfab][11])                                                                                                           |
+| **Bookshelves**                     | **Bookshelf – FractalSpace**             | Only ~1.6k tris; very good for mobile. ([Sketchfab][12])                                                                                                                                      |
+| **Bookshelf alternative**           | **Bookshelf – Yağız Solmaz**             | 4.7k tris, textured, explicitly described for direct use in scenes. ([Sketchfab][13])                                                                                                         |
+| **Furniture**                       | **Kenney Furniture Kit**                 | 140+ 3D assets, CC0. Excellent for tables/chairs/interior props. ([kenney.nl][14])                                                                                                            |
+| **Environment pieces**              | **Kenney Building Kit**                  | 80+ walls/floors/doors/windows, OBJ/FBX/glTF, CC0. ([itch.io][15])                                                                                                                            |
+| **VFX / impacts**                   | **Magic Effects FREE**                   | Free stylized Unity VFX with explosions, sparks, magic circles, slash/impact-style effects. ([marketplace.unity.com][16])                                                                     |
+| **Impact feedback**                 | **Easy Impact Frames**                   | Free stylized impact-frame system for making hits feel much more powerful. ([marketplace.unity.com][17])                                                                                      |
+
+## 🔗 Direct places to download / preview
+
+### 1. Characters
+
+**Best overall:**
+[Quaternius Universal Base Characters](https://quaternius.com/packs/universalbasecharacters.html?utm_source=chatgpt.com)
+
+This is probably where I'd start. It gives us the **base player skeleton** rather than grabbing random characters from 20 different artists. It is designed for retargeting and has customizable hairstyles. ([quaternius.com][1])
+
+**More character variety:**
+[Ultimate Modular Men Pack](https://quaternius.com/packs/ultimatemodularcharacters.html?utm_source=chatgpt.com)
+[Ultimate Modular Women Pack](https://quaternius.com/packs/ultimatemodularwomen.html?utm_source=chatgpt.com)
+
+**Characters + clothing + hats + accessories:**
+[Creative Characters FREE](https://www.fab.com/listings/94fd60a2-5659-4fc4-af1d-a8cdd2681c2e?utm_source=chatgpt.com)
+
+That last one is particularly interesting for **Book Bash cosmetics** because it includes hats, hairstyles, clothing, shoes, glasses and accessories. ([Fab.com][4])
+
+---
+
+# 2. Animations
+
+### The one I'd download first
+
+[Quaternius Universal Animation Library 2](https://quaternius.itch.io/universal-animation-library-2?utm_source=chatgpt.com)
+
+This is extremely useful for Book Bash.
+
+It has **130+ animations**, including:
+
+```text
+Idle
+Walk
+Run
+8-direction movement
+Jump
+Fall
+Parkour
+Combat
+3-hit combos
+4-hit combos
+Recovery
+Root motion
+Non-root motion
+```
+
+and it supports Unity, Godot and Unreal with retargeting. It's CC0. ([itch.io][5])
+
+### First animation library
+
+[Universal Animation Library](https://quaternius.itch.io/universal-animation-library?utm_source=chatgpt.com)
+
+120+ animations and especially useful for basic locomotion/combat. ([itch.io][6])
+
+### Mixamo
+
+[Mixamo](https://www.mixamo.com/?utm_source=chatgpt.com)
+
+This is the place I'd use when we specifically need an animation such as:
+
+```text
+Throw
+Dodge
+Roll
+Jump
+Sprint
+Celebrate
+Taunt
+Hit reaction
+Fall
+Get up
+```
+
+Mixamo supports automatic rigging and has thousands of motion-captured animations. ([Mixamo][7])
+
+**Important for your project:** don't build every character separately around Mixamo. Use **one humanoid base rig**, then retarget animations onto your characters.
+
+---
+
+# 3. Books
+
+For Book Bash, I'd actually use **multiple book assets**.
+
+### Lightweight projectile
+
+[Book — Low Poly](https://sketchfab.com/3d-models/book-low-poly-bc2e219d4e4546b3b37c9cde7425691a?utm_source=chatgpt.com)
+
+Only 528 triangles. That's excellent for a projectile that might be flying around constantly. ([Sketchfab][9])
+
+### Hero book
+
+[FREE Simple Opening Book](https://sketchfab.com/3d-models/free-simple-opening-book-334ac25cb42f484bae059b920aed0e4f?utm_source=chatgpt.com)
+
+~1k triangles, low-poly and has textures. ([Sketchfab][10])
+
+### Collection
+
+[Books Essentials](https://sketchfab.com/3d-models/books-essentials-1b5fe01e6d464837ae7e03745fd58ff5?utm_source=chatgpt.com)
+
+This gives you a collection rather than one identical book repeated everywhere. ([Sketchfab][11])
+
+---
+
+# 4. Bookshelves / Library
+
+### Very lightweight bookshelf
+
+[Low-Poly Bookshelf](https://sketchfab.com/3d-models/bookshelf-e271b784fb9449b78771e21518368ba0?utm_source=chatgpt.com)
+
+Only around **1.6k triangles**, which is much more sensible for a mobile game than importing giant 100k+ triangle furniture models. ([Sketchfab][12])
+
+### More detailed bookshelf
+
+[Textured Bookshelf](https://sketchfab.com/3d-models/bookshelf-b622a0d9698d4c52ae2b9e06376adfe1?utm_source=chatgpt.com)
+
+~4.7k tris with textures. ([Sketchfab][13])
+
+---
+
+# 5. Tables, chairs, interior props
+
+### Kenney Furniture Kit
+
+[Kenney Furniture Kit](https://kenney.nl/assets/furniture-kit?utm_source=chatgpt.com)
+
+This one is a **very good foundation** for the library because it's 140+ furniture assets and CC0. ([kenney.nl][14])
+
+Use it for:
+
+```text
+Tables
+Chairs
+Benches
+Beds
+Shelves
+Cabinets
+Small props
+```
+
+---
+
+# 6. Environment construction
+
+### Kenney Building Kit
+
+[Kenney Building Kit](https://kenney.nl/assets/building-kit?utm_source=chatgpt.com)
+
+80+ modular pieces and CC0, including walls, floors, doors and windows. ([itch.io][15])
+
+This is useful because instead of downloading **one giant library scene**, we construct:
+
+```text
+Wall
++
+Floor
++
+Window
++
+Door
++
+Shelf
++
+Pillar
++
+Stairs
++
+Props
+=
+OUR LIBRARY
+```
+
+That gives us much more control.
+
+---
+
+# 7. Hit effects / book impact VFX
+
+### Magic Effects FREE
+
+[Magic Effects FREE](https://marketplace.unity.com/packages/vfx/particles/spells/magic-effects-free-247933?utm_source=chatgpt.com)
+
+It includes stylized effects useful for impacts, sparks, magic and exaggerated hits. ([marketplace.unity.com][16])
+
+### Impact frames
+
+[Easy Impact Frames](https://marketplace.unity.com/packages/vfx/shaders/easy-impact-frames-355376?utm_source=chatgpt.com)
+
+This is particularly relevant to Book Bash because **the impact is supposed to feel hilarious and satisfying**. ([marketplace.unity.com][17])
+
+### Browse more VFX
+
+[Unity VFX library](https://assetstore.unity.com/vfx?utm_source=chatgpt.com)
+
+Unity separates particles, shaders, free VFX, toon VFX, magic VFX, etc. ([Unity Asset Store][18])
+
+---
+
+# 8. A very useful giant source: Quaternius
+
+[Quaternius Free Game Assets](https://quaternius.com/?utm_source=chatgpt.com)
+
+This is probably the **single website I'd spend the most time on for Book Bash**.
+
+It currently has:
+
+```text
+Characters
+Animated characters
+Buildings
+Furniture
+Fantasy props
+Nature
+Vehicles
+Animation libraries
+Modular environments
+```
+
+and many of the packs are CC0. ([quaternius.com][8])
+
+---
+
+# 9. Another excellent source: Kenney
+
+[Kenney 3D Assets](https://kenney.nl/assets?utm_source=chatgpt.com)
+
+Kenney is fantastic for filling all the boring-but-important gaps:
+
+```text
+Furniture
+Buildings
+Props
+Nature
+Roads
+Decoration
+Environment pieces
+```
+
+Many of its packs are CC0. For example, the Furniture Kit and Building Kit are CC0. ([kenney.nl][14])
+
+---
+
+# 10. Sketchfab — use this for individual hero assets
+
+[Sketchfab downloadable 3D models](https://sketchfab.com/3d-models?features=downloadable&utm_source=chatgpt.com)
+
+It is particularly useful when we need something very specific:
+
+```text
+special hat
+rare book
+ornate bookshelf
+owl
+cat
+lamp
+globe
+clock
+statue
+special prop
+```
+
+But **check the license on every model**. Sketchfab has many different licenses; don't assume every downloadable model is commercially reusable.
+
+For example, the low-poly book listings above have different licensing terms, so check the individual page before shipping. ([Sketchfab][9])
+
+---
+
+# What I would actually download for Book Bash
+
+I wouldn't download 500 random assets.
+
+I'd start with this exact stack:
+
+```text
+CHARACTER
+    ↓
+Quaternius Universal Base Characters
+    ↓
+ANIMATION
+    ↓
+Universal Animation Library 2
+    ↓
+OPTIONAL EXTRA ANIMATION
+    ↓
+Mixamo
+    ↓
+LIBRARY
+    ↓
+Kenney Furniture Kit
++
+Kenney Building Kit
++
+Low-poly Bookshelves
+    ↓
+BOOK
+    ↓
+Low-poly Book
++
+Books Essentials
+    ↓
+COSMETICS
+    ↓
+Creative Characters FREE
+    ↓
+VFX
+    ↓
+Magic Effects FREE
++
+Impact Frames
+```
+
+That gives you a **coherent asset ecosystem** instead of the ugly situation you just saw where every object looks like it came from a completely different game.
+
+### One especially important recommendation
+
+For **your actual Book Bash character**, I would use **Quaternius Universal Base Characters + Universal Animation Library 2 + modular cosmetics** rather than hunting for a finished character.
+
+That lets you build:
+
+```text
+             BOOK BASH CHARACTER
+                     │
+        ┌────────────┼────────────┐
+        ↓            ↓            ↓
+      BODY          CLOTHES       HAIR
+        │            │            │
+        └────────────┼────────────┘
+                     ↓
+                  HAT
+                     ↓
+                BACKPACK
+                     ↓
+               BOOK SKIN
+                     ↓
+                TRAIL
+```
+
+So the **same character skeleton** can become 50+ visually different characters without creating 50 completely different rigs.
+
+And for the web version you're building, prioritize **GLB/glTF** wherever available; it keeps the pipeline much cleaner than repeatedly converting FBX assets.
+
+[Quaternius Universal Base Characters](https://quaternius.com/packs/universalbasecharacters.html?utm_source=chatgpt.com) · [Universal Animation Library 2](https://quaternius.itch.io/universal-animation-library-2?utm_source=chatgpt.com) · [Mixamo](https://www.mixamo.com/?utm_source=chatgpt.com) · [Kenney Furniture Kit](https://kenney.nl/assets/furniture-kit?utm_source=chatgpt.com) · [Kenney Building Kit](https://kenney.nl/assets/building-kit?utm_source=chatgpt.com)
+
+[1]: https://quaternius.com/packs/universalbasecharacters.html?utm_source=chatgpt.com "Quaternius • Universal Base Characters"
+[2]: https://quaternius.com/packs/ultimatemodularcharacters.html?utm_source=chatgpt.com "Quaternius • Ultimate Modular Men Pack"
+[3]: https://quaternius.com/packs/ultimatemodularwomen.html?utm_source=chatgpt.com "Quaternius • Ultimate Modular Women Pack"
+[4]: https://www.fab.com/listings/94fd60a2-5659-4fc4-af1d-a8cdd2681c2e?utm_source=chatgpt.com "Creative Characters FREE - Animated Low Poly 3D Models | Fab"
+[5]: https://quaternius.itch.io/universal-animation-library-2?utm_source=chatgpt.com "Universal Animation Library 2 by Quaternius"
+[6]: https://quaternius.itch.io/universal-animation-library?utm_source=chatgpt.com "Universal Animation Library by Quaternius"
+[7]: https://www.mixamo.com/?modal=S&redir=%2Fmystuff%2Fcharacters&utm_source=chatgpt.com "Mixamo"
+[8]: https://quaternius.com/?utm_source=chatgpt.com "Quaternius • Free Game Assets"
+[9]: https://sketchfab.com/3d-models/book-low-poly-bc2e219d4e4546b3b37c9cde7425691a?utm_source=chatgpt.com "Book (Low Poly) - Download Free 3D model by game_travel [bc2e219] - Sketchfab"
+[10]: https://sketchfab.com/3d-models/free-simple-opening-book-334ac25cb42f484bae059b920aed0e4f?utm_source=chatgpt.com "FREE Simple Opening Book - Download Free 3D model by Cécile Amstad (@c.m.a) [334ac25]"
+[11]: https://sketchfab.com/3d-models/books-essentials-1b5fe01e6d464837ae7e03745fd58ff5?utm_source=chatgpt.com "Books Essentials - Download Free 3D model by Daniel.Riches [1b5fe01] - Sketchfab"
+[12]: https://sketchfab.com/3d-models/bookshelf-e271b784fb9449b78771e21518368ba0?utm_source=chatgpt.com "Bookshelf - Download Free 3D model by FractalSpace [e271b78] - Sketchfab"
+[13]: https://sketchfab.com/3d-models/bookshelf-b622a0d9698d4c52ae2b9e06376adfe1?utm_source=chatgpt.com "Bookshelf - Download Free 3D model by Yağız Solmaz (@yagiz.slz) [b622a0d] - Sketchfab"
+[14]: https://kenney.nl/assets/furniture-kit?utm_source=chatgpt.com "Furniture Kit · Kenney"
+[15]: https://kenney-assets.itch.io/building-kit?utm_source=chatgpt.com "Building Kit by Kenney (Assets)"
+[16]: https://marketplace.unity.com/packages/vfx/particles/spells/magic-effects-free-247933?utm_source=chatgpt.com "Magic Effects FREE | Spells | Unity Asset Store"
+[17]: https://marketplace.unity.com/packages/vfx/shaders/easy-impact-frames-355376?utm_source=chatgpt.com "Easy Impact Frames | VFX Shaders | Unity Asset Store"
+[18]: https://assetstore.unity.com/vfx?utm_source=chatgpt.com "The Best Assets for Game Making | Unity Asset Store"

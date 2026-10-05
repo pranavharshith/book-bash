@@ -17,6 +17,9 @@ build/
 # Dev tools (large binaries, not committed to git)
 devtools/
 
+# Raw downloaded asset packs (source archives; extracted assets live in assets/)
+SOME ASSESTS/
+
 # OS
 Thumbs.db
 .DS_Store
